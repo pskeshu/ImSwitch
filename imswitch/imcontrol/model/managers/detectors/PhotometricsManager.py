@@ -108,10 +108,24 @@ class PhotometricsManager(DetectorManager):
 
         self._performSafeCameraAction(binningAction)
 
+    def check_safe_exposure(self, value):
+        # width of the sensor
+        # read out mode
+        # which detemines the min_exposure_value
+
+        width = self._camera
+        read_out_mode = self._camera
+
+        if value <= 20:
+            return 20
+
+        return value
+
     def setParameter(self, name, value):
         super().setParameter(name, value)
 
         if name == 'Set exposure time':
+            value = self.check_safe_exposure(value)
             self._setExposure(value)
             self._updatePropertiesFromCamera()
         elif name == 'Trigger source':
