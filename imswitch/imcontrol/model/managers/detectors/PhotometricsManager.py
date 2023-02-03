@@ -27,6 +27,7 @@ class PhotometricsManager(DetectorManager):
         self.scanLineTime = self._camera.scan_line_time
         self.__acquisition = False
         # Prepare parameters
+        # temperature
         parameters = {
             'Set exposure time': DetectorNumberParameter(group='Timings', value=0,
                                                          valueUnits='ms', editable=True),
